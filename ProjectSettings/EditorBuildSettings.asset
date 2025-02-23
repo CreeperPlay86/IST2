@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Artem/Scenes/TEST.unity
+    path: Assets/Artem/Scenes/TESTArtem.unity
     guid: 357dd1a5112cc8446808de3601841b2e
   m_configObjects: {}
