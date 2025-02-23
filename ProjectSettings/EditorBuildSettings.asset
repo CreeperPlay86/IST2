@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Maxim/Scenes/TEST.unity
     guid: 21b0c86cafc4f5a4da407bf9a4ba7598
+  - enabled: 1
+    path: Assets/Maxim/Scenes/Map_00.unity
+    guid: 17c065120394991499c3e31e93f49a93
   m_configObjects: {}
