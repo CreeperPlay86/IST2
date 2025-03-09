@@ -13,6 +13,9 @@ public class CameraController : MonoBehaviour
     public float ySpeed = 2f;
     public float xSpeed = 300f;
     
+    [Range(2f, 10f)]
+    public float zoomLimit = 10f;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -21,8 +24,21 @@ public class CameraController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    
     {
+        
+        FreeLook.m_Orbits[0].m_Radius = zoomLimit;
+        FreeLook.m_Orbits[1].m_Radius = zoomLimit;
+        FreeLook.m_Orbits[2].m_Radius = zoomLimit;
+        FreeLook.m_Orbits[0].m_Height = zoomLimit;
+        
+        zoomLimit = Mathf.Clamp(zoomLimit, 2f, 10f);
+        
+         FreeLook.m_Orbits[0].m_Radius = Mathf.Clamp(FreeLook.m_Orbits[0].m_Radius, 2f, 10f);
+         FreeLook.m_Orbits[1].m_Radius = Mathf.Clamp(FreeLook.m_Orbits[1].m_Radius, 2f, 10f);
+         FreeLook.m_Orbits[2].m_Radius = Mathf.Clamp(FreeLook.m_Orbits[2].m_Radius, 2f, 10f);
+         
+         FreeLook.m_Orbits[0].m_Height = Mathf.Clamp(FreeLook.m_Orbits[0].m_Height, 2f, 10f);
+        
         if (Input.GetMouseButton(1)) //Проверка Зажатия ПКМ
         {
             
@@ -35,28 +51,10 @@ public class CameraController : MonoBehaviour
             FreeLook.m_XAxis.m_MaxSpeed = 0f;
             FreeLook.m_YAxis.m_MaxSpeed = 0f;
         }
-
-        if (FreeLook.m_Orbits[0].m_Radius < 2f) //Блокировка Приближения
-        {
-            FreeLook.m_Orbits[0].m_Radius = 2;
-            FreeLook.m_Orbits[1].m_Radius = 2;
-            FreeLook.m_Orbits[2].m_Radius = 2;
-        }
-
-        if (FreeLook.m_Orbits[0].m_Radius > 10f) //Блокировка Дальности
-        {
-            FreeLook.m_Orbits[0].m_Radius = 10;
-            FreeLook.m_Orbits[1].m_Radius = 10;
-            FreeLook.m_Orbits[2].m_Radius = 10;
-        }
         
         if (Input.GetAxis("Mouse ScrollWheel") != 0) //Приближение и Отдаление в зависимости от прокрутки колеса мыши
         {
-            
-            FreeLook.m_Orbits[0].m_Radius += Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
-            FreeLook.m_Orbits[1].m_Radius += Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
-            FreeLook.m_Orbits[2].m_Radius += Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
-            
+            zoomLimit += Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
         }
         
     }
