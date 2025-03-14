@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 public class Store : MonoBehaviour
 {
+    public Inventory inventory;
+    
     public bool skipTimer = false;
     public bool tripleEggs = false;
 
@@ -191,6 +192,20 @@ public class Store : MonoBehaviour
             {
                 powerMultiplier += 3f;
             }
+        }
+    }
+
+    public void BuyEgg()
+    {
+        if (tripleEggs)
+        {
+            inventory.AddItem();
+            inventory.AddItem();
+            inventory.AddItem();
+        }
+        else
+        {
+            inventory.AddItem();
         }
     }
 }
