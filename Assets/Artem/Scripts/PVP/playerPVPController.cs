@@ -5,29 +5,22 @@ using UnityEngine;
 public class playerPVPController : MonoBehaviour
 {
     #region DATA
-        #region FLOAT
-            public float currentHealth;
-        #endregion
-
-        #region CONNECT
-            public gameManager GM;
+        #region GAME OBJECTS
+            public GameObject enemyPVP;
         #endregion
     #endregion
 
     void Start()
     {
-        GM = GameObject.Find("gameManager").GetComponent<gameManager>();
+        StartCoroutine(lookAtEnemy());
     }
 
-    #region VOID and IE
-        public void damageMe(int level)
-        {
-            currentHealth -= (10 * (level + 1));
+    IEnumerator lookAtEnemy()
+    {
+        yield return new WaitForSeconds(0.05f);
+        
+        enemyPVP = GameObject.FindGameObjectWithTag("enemyPVP");
 
-            if(currentHealth <= 0)
-            {
-                GM.loosePVP();
-            }
-        }
-    #endregion
+        transform.LookAt(enemyPVP.transform);
+    }
 }

@@ -5,34 +5,33 @@ using UnityEngine;
 public class enemyController : MonoBehaviour
 {
     #region DATA
-        #region INT
-            public int level;
-        #endregion
-
         #region CONNECT
             public playerPVPController PPC;
         #endregion
 
-        #region FLOAT
-            public float currentHealth;
+        #region GAMEOBJETS
+            public GameObject playerPVP;
         #endregion
     #endregion
 
     void Start()
     {
-        StartCoroutine(goDamagePlayer());
+        // StartCoroutine(goDamagePlayer());
 
         PPC = GameObject.Find("playerPVP(Clone)").GetComponent<playerPVPController>();
+        playerPVP = GameObject.Find("playerPVP(Clone)");
+
+        transform.LookAt(playerPVP.transform);
     }
 
     #region VOID and IE
-        IEnumerator goDamagePlayer()
-        {
-            yield return new WaitForSeconds(1f);
-
-            PPC.damageMe(level);
-
-            StartCoroutine(goDamagePlayer());
-        }
+        // IEnumerator goDamagePlayer()
+        // {
+            // yield return new WaitForSeconds(1f);
+// 
+            // PPC.damageMe(level);
+// 
+            // StartCoroutine(goDamagePlayer());
+        // }
     #endregion
 }
