@@ -40,11 +40,15 @@ public class activePvp : MonoBehaviour
             {
                 timer += Time.deltaTime;
 
-                if(timer >= 2f)
-                    GM.activePVP(index);
+                if(timer >= 1f)
+                {
+                    timer = 0;
+
+                    GM.activePVP(index); 
+                }
             }
 
-            buttonAcceptPVP.GetComponent<Image>().fillAmount = (timer / 2);
+            buttonAcceptPVP.GetComponent<Image>().fillAmount = (timer / 1);
         }
         else
             timer = 0;
